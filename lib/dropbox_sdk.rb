@@ -784,6 +784,8 @@ class DropboxClient
   #   You must check the returned metadata to know what this new name is.
   #   This field should only be True if your intent is to potentially
   #   clobber changes to a file that you don't know about.
+  #   NOTE: the official API will default to true. We explicilty default to
+  #   false.
   # * +parent_rev+: The rev field from the 'parent' of this upload. [optional]
   #   If your intent is to update the file at the given path, you should
   #   pass the parent_rev parameter set to the rev value from the most recent
@@ -891,6 +893,8 @@ class DropboxClient
     #   You must check the returned metadata to know what this new name is.
     #   This field should only be True if your intent is to potentially
     #   clobber changes to a file that you don't know about.
+    #   NOTE: the official API will default to true. We explicilty default to
+    #   false.
     # * parent_rev: The rev field from the 'parent' of this upload.
     #   If your intent is to update the file at the given path, you should
     #   pass the parent_rev parameter set to the rev value from the most recent
