@@ -52,6 +52,34 @@ example, you need to edit the ".rb" file and put your Dropbox API app key and
 secret in the "APP_KEY" and "APP_SECRET" constants.
 
 ----------------------------------
+Inconsistencies
+
+This ruby gem does not exactly follow the API doc published on the Dropbox
+website in some instances. In particular, the following behaviour is
+inconsistent:
+
+* Chunked Upload Commits *
+
+https://www.dropbox.com/developers/core/docs#commit-chunked-upload
+
+The `overwrite` param in this gem is **false** by default, not true.
+E.g. in examples/chunked_upload.rb, consistent behaviour would be achieved by
+passing true as the second argument to `.finish`:
+
+    uploader.finish(dropbox_target_path, true)
+
+
+* Files Put *
+
+https://www.dropbox.com/developers/core/docs#files_put
+
+Similarly, overwrite in this gem is **false** by default.
+E.g. in examples/dropbox_controller.rb:52, consistent behaviour would be
+achieved by passing true as the third argument to `.put_file`:
+
+    client.put_file(params[:file].original_filename, params[:file].read, true)
+
+----------------------------------
 Running the Tests
 
 # gem install bundler
@@ -59,3 +87,4 @@ Running the Tests
 # bundle install
 # cd test
 # DROPBOX_RUBY_SDK_ACCESS_TOKEN=<oauth2-access-token> bundle exec ruby sdk_test.rb
+
